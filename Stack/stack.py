@@ -29,6 +29,6 @@ myStack = Stack()
 myStack.push("A")
 myStack.push("B")
 myStack.push("C")
-print(myStack.search("B"))
+
 
 
