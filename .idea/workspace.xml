@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bc27528e-21c7-4fea-8758-3c26db117788" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Stack/BalancedBrackets.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Stack/Int_to_Bin.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Stack/ReverseString.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SinglyLinkedList/SinglyLinkedList.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Stack/stack.py" beforeDir="false" afterPath="$PROJECT_DIR$/Stack/stack.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +24,7 @@
   <component name="ProjectId" id="1mbiJgEoukQ8lEEpfm7MkQ0GVTP" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Stack/ReverseString.py" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/SinglyLinkedList/SinglyLinkedList.py" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunDashboard">
@@ -42,7 +39,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Int_to_Bin">
+  <component name="RunManager" selected="Python.SinglyLinkedList">
     <configuration name="BalancedBrackets" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PythonDSA" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -136,6 +133,37 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="SinglyLinkedList" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
+      <module name="PythonDSA" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="/usr/local/bin/python3.7" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/SinglyLinkedList" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" />
+        </ENTRIES>
+      </EXTENSION>
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/SinglyLinkedList/SinglyLinkedList.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="stack" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PythonDSA" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -171,6 +199,7 @@
       <item itemvalue="Python.BalancedBrackets" />
       <item itemvalue="Python.stack" />
       <item itemvalue="Python.Int_to_Bin" />
+      <item itemvalue="Python.SinglyLinkedList" />
       <item itemvalue="Python.ReverseString" />
     </list>
   </component>
@@ -185,6 +214,14 @@
       <option name="presentableId" value="Default" />
       <updated>1609768620256</updated>
     </task>
+    <task id="LOCAL-00001" summary="- Stack Lesson completed.">
+      <created>1609799683817</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1609799683817</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -192,10 +229,16 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- Stack Lesson completed." />
+    <option name="LAST_COMMIT_MESSAGE" value="- Stack Lesson completed." />
   </component>
 </project>
