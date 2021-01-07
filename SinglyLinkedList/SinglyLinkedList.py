@@ -42,6 +42,47 @@ class LinkedList:
         new_node.next = prev_node.next
         prev_node.next = new_node
 
+    def delete_node(self, key):
+
+        cur_node = self.head
+
+        if cur_node and cur_node.data == key:
+            self.head = cur_node.next
+            cur_node = None
+            return
+
+        else:
+            while cur_node:
+                prev_node = cur_node
+                cur_node = cur_node.next
+                if cur_node.data == key:
+                    prev_node.next = cur_node.next
+                    cur_node = None
+                    return
+        print("No node with this value")
+
+    def delete_node_at_position(self, position):
+        if self.head:
+            cur_node = self.head
+            if position == 0:
+                self.head = cur_node.next
+                cur_node = None
+                return
+
+            prev = None
+            count = 0
+
+            while cur_node and count != position:
+                prev = cur_node
+                cur_node = cur_node.next
+                count += 1
+
+            if cur_node is None:
+                return
+
+            prev.next = cur_node.next
+            cur_node = None
+
     def prepend(self, data):
         new_node = Node(data)
         new_node.next = self.head
@@ -55,12 +96,46 @@ class LinkedList:
             print(curr_node.data, "->", end=" ")
             curr_node = curr_node.next
 
+    def len_iterative(self):
+        count = 0
+        cur_node = self.head
+
+        while cur_node:
+            count += 1
+            cur_node = cur_node.next
+        return count
+
+    def len_recursive(self):
+        count = 0
+        cur_node = self.head
+
+        while cur_node:
+            count += 1
+            cur_node = cur_node.next
+        return count
+
+    def len_recursive(self, node):
+        if node is None:
+            return 0
+        else:
+            return 1 + self.len_recursive(node.next)
+
 
 SLL = LinkedList()
+
 SLL.append("A")
 SLL.append("B")
 SLL.prepend("C")
 SLL.append_after("X", "C")
 SLL.insert_after_node(SLL.head.next, "Z")
 
+print()
 SLL.print_list()
+print(SLL.len_recursive(SLL.head))
+
+SLL.delete_node("A")
+SLL.delete_node_at_position(3)
+
+print()
+SLL.print_list()
+print(SLL.len_iterative())
