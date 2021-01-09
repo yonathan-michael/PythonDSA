@@ -83,6 +83,40 @@ class LinkedList:
             prev.next = cur_node.next
             cur_node = None
 
+    def swap_nodes(self, key1, key2):
+        if key1 == key2:
+            return
+
+        prev1 = None
+        curr1 = self.head
+
+        while curr1 and curr1.data != key1:
+            prev1 = curr1
+            curr1 = curr1.next
+
+        prev2 = None
+        curr2 = self.head
+
+        while curr2 and curr2.data != key2:
+            prev2 = curr2
+            curr2 = curr2.next
+
+        if not curr1 or not curr2:
+            return
+
+        if prev1:
+            prev1.next = curr2
+        else:
+            self.head = curr2
+
+        if prev2:
+            prev2.next = curr1
+        else:
+            self.head = curr1
+
+        curr1.next = curr2.next
+        curr2.next = curr1.next
+
     def prepend(self, data):
         new_node = Node(data)
         new_node.next = self.head
@@ -97,15 +131,6 @@ class LinkedList:
             curr_node = curr_node.next
 
     def len_iterative(self):
-        count = 0
-        cur_node = self.head
-
-        while cur_node:
-            count += 1
-            cur_node = cur_node.next
-        return count
-
-    def len_recursive(self):
         count = 0
         cur_node = self.head
 
