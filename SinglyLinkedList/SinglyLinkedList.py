@@ -169,14 +169,50 @@ class LinkedList:
 
         self.head = _reverse_recursive(cur=self.head, prev=None)
 
+    def merge_sorted(self, llist):
+        p = self.head
+        q = llist.head
+        s = None
+
+        if not p:
+            return q
+        if not q:
+            return p
+
+        if p and q:
+            if p.data <= q.data:
+                s = p
+                p = s.next
+            else:
+                s = q
+                q = s.next
+            new_head = s
+
+        while p and q:
+            if p.data <= q.data:
+                s.next = p
+                s = p
+                p = s.next
+            else:
+                s.next = q
+                s = q
+                q = s.next
+
+        if not p:
+            s.next = q
+        if not q:
+            s.next = p
+        return new_head
+
 
 SLL = LinkedList()
+SLL2 = LinkedList()
 
-SLL.append("A")
-SLL.append("B")
-SLL.prepend("C")
-SLL.append_after("X", "C")
-SLL.insert_after_node(SLL.head.next, "Z")
+SLL.append(1)
+SLL.append(3)
+
+SLL2.append(2)
+SLL2.append(4)
 
 print()
 SLL.print_list()
@@ -187,14 +223,21 @@ SLL.reverse_iterative()
 SLL.print_list()
 print(SLL.len_recursive(SLL.head))
 
-SLL.delete_node("A")
-SLL.delete_node_at_position(3)
 
 print()
-SLL.print_list()
-print(SLL.len_iterative())
+SLL2.print_list()
+print(SLL2.len_iterative())
 print()
 print("Let's Reverse")
-SLL.reverse_recursive()
+SLL2.reverse_recursive()
+SLL2.print_list()
+print(SLL.len_recursive(SLL2.head))
+
+# Reverse Back
+SLL.reverse_iterative()
+SLL2.reverse_recursive()
+
+print()
+print("Let's merge:")
+SLL.merge_sorted(SLL2)
 SLL.print_list()
-print(SLL.len_recursive(SLL.head))
