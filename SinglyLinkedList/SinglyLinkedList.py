@@ -145,6 +145,30 @@ class LinkedList:
         else:
             return 1 + self.len_recursive(node.next)
 
+    def reverse_iterative(self):
+        cur = self.head
+        prev = None
+        while cur:
+            next = cur.next
+            cur.next = prev
+            prev = cur
+            cur = next
+        self.head = prev
+
+    def reverse_recursive(self):
+
+        def _reverse_recursive(cur, prev):
+            if not cur:
+                return prev
+
+            nxt = cur.next
+            cur.next = prev
+            prev = cur
+            cur = nxt
+            return _reverse_recursive(cur, prev)
+
+        self.head = _reverse_recursive(cur=self.head, prev=None)
+
 
 SLL = LinkedList()
 
@@ -157,6 +181,11 @@ SLL.insert_after_node(SLL.head.next, "Z")
 print()
 SLL.print_list()
 print(SLL.len_recursive(SLL.head))
+print()
+print("Let's Reverse")
+SLL.reverse_iterative()
+SLL.print_list()
+print(SLL.len_recursive(SLL.head))
 
 SLL.delete_node("A")
 SLL.delete_node_at_position(3)
@@ -164,3 +193,8 @@ SLL.delete_node_at_position(3)
 print()
 SLL.print_list()
 print(SLL.len_iterative())
+print()
+print("Let's Reverse")
+SLL.reverse_recursive()
+SLL.print_list()
+print(SLL.len_recursive(SLL.head))
