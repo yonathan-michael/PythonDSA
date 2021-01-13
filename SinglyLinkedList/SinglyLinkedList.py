@@ -1,3 +1,6 @@
+from Stack.stack import Stack
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -269,6 +272,105 @@ class LinkedList:
             self.head = p.next
             p.next = None
 
+    def is_palindrome(self):
+        # Solution 1 by growing string and checking if it equals its reverse (String Slicing):
+        s = ""
+        p = self.head
+        while p:
+            s += p.data
+            p = p.next
+        return s == s[::-1]
+
+    def is_palindrome_via_stack(self):
+        # Solution 2 by using a stack:
+        s = Stack()
+        p = self.head
+        while p:
+            s.push(p.data)
+            p = p.next
+        p = self.head
+        while p:
+            stack_data = s.pop()
+            if p.data != stack_data:
+                return False
+            p = p.next
+        return True
+
+    def is_palindrome(self):
+        if self.head:
+            p = self.head
+            q = self.head
+            prev = []
+
+            i = 0
+            while q:
+                prev.append(q)
+                q = q.next
+                i += 1
+            q = prev[i - 1]
+
+            count = 1
+
+            while count <= i // 2 + 1:
+                if prev[-count].data != p.data:
+                    return False
+                p = p.next
+                count += 1
+            return True
+        else:
+            return True
+
+    def head_to_tail(self):
+        if self.head and self.head.next:
+            q = self.head
+            prev = None
+            while q.next:
+                prev = q
+                q = q.next
+            prev.next = None
+            q.next = self.head
+            self.head = q
+
+    def sum_two_lists(self, llist):
+        if self.head and llist.head:
+            p = self.head
+            q = llist.head
+            mod_list = []
+            carry_over_list = []
+            sum_linked_list = LinkedList()
+
+            while p and q:
+                place_sum = p.data + q.data
+                mod = place_sum % 10
+                carry_over = place_sum // 10
+                mod_list.append(mod)
+                carry_over_list.append(carry_over)
+                p = p.next
+                q = q.next
+
+            if p:
+                while p:
+                    mod_list.append(p.data)
+                    carry_over_list.append(0)
+                    p = p.next
+
+            if q:
+                while q:
+                    mod_list.append(q.data)
+                    carry_over_list.append(0)
+                    q = q.next
+
+            carry_over = 0
+            for i in range(len(mod_list)):
+                sum_linked_list.append(carry_over + mod_list[i])
+                carry_over = carry_over_list[i]
+            return sum_linked_list
+        else:
+            if self.head:
+                return self
+            else:
+                return llist
+
 
 SLL = LinkedList()
 SLL2 = LinkedList()
@@ -309,3 +411,8 @@ SLL.merge_sorted(SLL2)
 SLL.print_list()
 print()
 
+print()
+print("head to tail!")
+SLL.head_to_tail()
+SLL.print_list()
+print()
