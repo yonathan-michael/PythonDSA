@@ -1,3 +1,6 @@
+from SinglyLinkedList.SinglyLinkedList import LinkedList
+
+
 class Node:
     def __init__(self, data):
         self.data = data
@@ -7,6 +10,17 @@ class Node:
 class CircularLinkedList:
     def __init__(self):
         self.head = None
+
+    def __len__(self):
+        curr = self.head
+        count = 1
+        if self.head:
+            while curr.next != self.head:
+                curr = curr.next
+                count += 1
+            return count
+        else:
+            return 0
 
     def prepend(self, data):
         new_node = Node(data)
@@ -41,7 +55,7 @@ class CircularLinkedList:
             if cur == self.head:
                 break
 
-    def remove(self,key):
+    def remove(self, key):
         if self.head:
             if self.head.data == key:
                 cur = self.head
@@ -87,13 +101,52 @@ class CircularLinkedList:
             print("List 2:")
             CLL2.print_list()
 
+    def remove_node(self, node):
+        if self.head == node:
+            cur = self.head
+            while cur.next != self.head:
+                cur = cur.next
+            if self.head == self.head.next:
+                self.head = None
+            else:
+                cur.next = self.head.next
+                self.head = self.head.next
+        else:
+            cur = self.head
+            prev = None
+            while cur.next != self.head:
+                prev = cur
+                cur = cur.next
+                if cur == node:
+                    prev.next = cur.next
+                    cur = cur.next
+
+    def josephus_circle(self, step):
+        cur = self.head
+
+        while len(self) > 1:
+            count = 1
+            while count != step:
+                cur = cur.next
+                count += 1
+            print("KILL:" + str(cur.data))
+            self.remove_node(cur)
+            cur = cur.next
+
+    def is_Circular(self, input_list):
+        cur = input_list.head
+        while cur.next != input_list.head:
+            if cur.next is None:
+                return False
+            cur = cur.next
+        return True
+
+
+llist = LinkedList()
+llist.append("A")
+llist.append("B")
 
 CLL = CircularLinkedList()
 CLL.append("A")
-CLL.append("B")
-CLL.append("C")
-CLL.append("D")
-CLL.append("E")
-CLL.append("F")
-
-CLL.split_lists()
+print(CLL.is_Circular(llist))
+print(CLL.is_Circular(CLL))
