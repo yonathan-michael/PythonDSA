@@ -54,13 +54,30 @@ class DoublyLinkedList:
                 return
             cur = cur.next
 
+    def add_node_before(self, key, data):
+        cur = self.head
+        while cur:
+            if cur.data == key and cur.prev is None:
+                self.prepend(data)
+                return
+            elif cur.data == key:
+                new_Node = Node(data)
+                new_Node.next = cur
+                prev = cur.prev
+                cur.prev = new_Node
+                prev.next = new_Node
+                new_Node.prev = prev
+                return
+            cur = cur.next
+
 
 DLL = DoublyLinkedList()
 
 DLL.append("A")
 DLL.append("B")
-DLL.prepend("C")
+DLL.append("C")
 
-DLL.add_node_after("B", "D")
+# DLL.add_node_after("B", "D")
+DLL.add_node_before("C", "D")
 
 DLL.print_list()
