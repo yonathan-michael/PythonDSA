@@ -70,6 +70,42 @@ class DoublyLinkedList:
                 return
             cur = cur.next
 
+    def delete(self, key):
+        cur = self.head
+        while cur:
+            if cur.data == key and cur == self.head:
+                # Case 1
+                if not cur.next:
+                    cur = None
+                    self.head = None
+                    return
+                # Case 2
+                else:
+                    nxt = cur.next
+                    cur.next = None
+                    nxt.prev = None
+                    cur = None
+                    self.head = nxt
+                    return
+            elif cur.data == key:
+                # Case 3
+                if not cur.next:
+                    prev = cur.prev
+                    prev.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+                else:
+                    prev = cur.prev
+                    nxt = cur.next
+                    prev.next = nxt
+                    nxt.prev = prev
+                    cur.next = None
+                    cur.prev = None
+                    cur = None
+                    return
+            cur = cur.next
+
 
 DLL = DoublyLinkedList()
 
@@ -79,5 +115,7 @@ DLL.append("C")
 
 # DLL.add_node_after("B", "D")
 DLL.add_node_before("C", "D")
+
+DLL.delete("D")
 
 DLL.print_list()
