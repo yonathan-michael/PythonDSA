@@ -106,6 +106,19 @@ class DoublyLinkedList:
                     return
             cur = cur.next
 
+    def reverse(self):
+        cur = self.head
+        while cur.next:
+            prev = cur.prev
+            nxt = cur.next
+            cur.next = prev
+            cur.prev = nxt
+            cur = nxt
+        prev = cur.prev
+        cur.next = prev
+        cur.prev = None
+        self.head = cur
+
 
 DLL = DoublyLinkedList()
 
@@ -114,8 +127,9 @@ DLL.append("B")
 DLL.append("C")
 
 # DLL.add_node_after("B", "D")
-DLL.add_node_before("C", "D")
-
-DLL.delete("D")
+# DLL.add_node_before("C", "D")
+#
+# DLL.delete("D")
+DLL.reverse()
 
 DLL.print_list()
