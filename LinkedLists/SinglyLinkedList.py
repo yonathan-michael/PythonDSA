@@ -34,16 +34,19 @@ class LinkedList:
 
     def delete(self, key):
         index = self.search(key)
-        count = 0
-        curr = self.head
-        while count != index:
-            prev = curr
-            curr = curr.next
-            count += 1
-        if self.head is curr:
-            self.head = curr.next
+        if isinstance(index, int):
+            count = 0
+            curr = self.head
+            while count != index:
+                prev = curr
+                curr = curr.next
+                count += 1
+            if self.head is curr:
+                self.head = curr.next
+            else:
+                prev.next = curr.next
         else:
-            prev.next = curr.next
+            return "Nothing to delete"
 
     def maximum(self):
         maximum = 0
@@ -66,7 +69,7 @@ class LinkedList:
     def print_list(self):
         curr = self.head
         while curr is not None:
-            print(curr.data, end='->')
+            print(curr.data, end=' -> ')
             curr = curr.next
 
 
@@ -78,10 +81,4 @@ SLL.prepend(7)
 SLL.append(9)
 SLL.prepend(6)
 
-SLL.print_list()
 
-print()
-
-print("Maximum of this list is " + str(SLL.maximum()))
-
-print("Minimium of this list is " + str(SLL.minimum()))
