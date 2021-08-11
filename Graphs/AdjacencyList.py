@@ -1,4 +1,6 @@
 from LinkedLists.SinglyLinkedList import LinkedList
+from QueueStructures.TheQueue import TheQueue
+from Stacks.Stack import Stack
 
 
 class Graph:
@@ -35,22 +37,90 @@ class Graph:
             print("|", i, end=" | => ")
             self.array[i].print_list()
 
+    def bfs_traversal(self, source):
 
-g = Graph(4)
+        result = ""
+        processed = []
+        queue = TheQueue()
+        queue.enqueue(source)
 
-g.add_edge(0, 2)
-g.add_edge(0, 1)
+        while not queue.is_empty():
+            r = queue.dequeue()
+            result += str(r)
+            processed.append(r)
+            curr = self.array[r].head
+            while curr:
+                if curr.data not in processed:
+                    processed.append(curr.data)
+                    queue.enqueue(curr.data)
+                curr = curr.next
+
+        return result
+
+    def dfs_traversal(self, source):
+        result = ""
+        num_of_vertices = self.vertices
+
+        if num_of_vertices == 0:
+            return result
+
+        processed = []
+        for i in range(num_of_vertices):
+            processed.append(False)
+
+        result, processed = self.dfs_traversal_helper(source, processed)
+
+        for i in range(num_of_vertices):
+            if not processed[i]:
+                result_new, processed = self.dfs_traversal_helper(i, processed)
+                result += result_new
+        return result
+
+
+    def dfs_traversal_helper(self, source, processed):
+        result = ""
+
+        stack = Stack()
+        stack.push(source)
+        processed[source] = True
+
+        while not stack.is_empty():
+            curr_data = stack.pop()
+            result += str(curr_data)
+
+            temp = self.array[curr_data].head
+
+            while temp is not None:
+                if not processed[temp.data]:
+                    stack.push(temp.data)
+                    processed[temp.data] = True
+                temp = temp.next
+        return result, processed
+
+
+
+
+g = Graph(7)
+
+g.print_graph()
+
+print()
+print()
+
+g.add_edge(1, 2)
 g.add_edge(1, 3)
-g.add_edge(2, 3)
 
+g.add_edge(2, 4)
+g.add_edge(2, 5)
+
+g.add_edge(3, 6)
 
 g.print_graph()
-
-g.remove_edge(0,1)
-g.add_vertex()
-g.add_vertex()
 
 print()
 print()
+# print("BFS TRAVERSAL")
+# print(g.bfs_traversal(0))
 
-g.print_graph()
+print("DFS TRAVERSAL")
+print(g.dfs_traversal(1))
