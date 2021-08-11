@@ -40,64 +40,103 @@ class Graph:
     def bfs_traversal(self, source):
 
         result = ""
-        processed = []
+
+        if self.vertices == 0:
+            return result
+
+        visited = [False for x in range(self.vertices)]
+
+        result, visited = self.bfs_traversal_helper(source, visited)
+
+        for i in range(len(visited)):
+            if not visited[i]:
+                new_result, visited = self.bfs_traversal_helper(i, visited)
+                result += new_result
+
+        return result
+
+    def bfs_traversal_helper(self, source, visited):
+
+        result = ""
         queue = TheQueue()
         queue.enqueue(source)
+        visited[source] = True
 
         while not queue.is_empty():
             r = queue.dequeue()
             result += str(r)
-            processed.append(r)
             curr = self.array[r].head
             while curr:
-                if curr.data not in processed:
-                    processed.append(curr.data)
+                if not visited[curr.data]:
+                    visited[curr.data] = True
                     queue.enqueue(curr.data)
                 curr = curr.next
 
-        return result
+        return result, visited
 
     def dfs_traversal(self, source):
+        # Initiate Result String
         result = ""
+        # Keep Track of Number of Vertices
         num_of_vertices = self.vertices
 
         if num_of_vertices == 0:
             return result
 
-        processed = []
+        # Keep track of visited nodes, initiate all indexes to False
+        visited = []
         for i in range(num_of_vertices):
-            processed.append(False)
+            visited.append(False)
 
-        result, processed = self.dfs_traversal_helper(source, processed)
+        # Begin Depth First Traversal with the starting node, pass in the result string and
+        # the visited/processed array
+        result, visited = self.dfs_traversal_helper(source, visited)
 
+        # For any nodes who were not part of the previous traversal (Disconnected graph)
         for i in range(num_of_vertices):
-            if not processed[i]:
-                result_new, processed = self.dfs_traversal_helper(i, processed)
+            if not visited[i]:
+                # Run a new DFS with the new unvisited source and pass in the visited array
+                # The result for this specific traversal will be returned as well as updated
+                # visited array
+                result_new, visited = self.dfs_traversal_helper(i, visited)
+                # Final Result
                 result += result_new
+        # Return Result
         return result
 
-
-    def dfs_traversal_helper(self, source, processed):
+    def dfs_traversal_helper(self, source, visited):
+        # Initiate Result String for this traversal
         result = ""
 
+        # Initiate Stack for this traversal
         stack = Stack()
+        # Push source onto Stack
         stack.push(source)
-        processed[source] = True
+        # Updated process array to say it has been visited/placed in stack for future processing
+        visited[source] = True
 
+        # Processing the stack
         while not stack.is_empty():
+            # Remove from stack
             curr_data = stack.pop()
+            # Do what you are supposed to do with the node
             result += str(curr_data)
+            # Enter its list of adjacent nodes, starting with the first one
 
             temp = self.array[curr_data].head
 
+            # Add all adjacent nodes to the stack
             while temp is not None:
-                if not processed[temp.data]:
+                # If this node has not been visited or placed in stack already
+                if not visited[temp.data]:
+                    # Push onto the stack
                     stack.push(temp.data)
-                    processed[temp.data] = True
+                    # Mark as visited for future processing
+                    visited[temp.data] = True
+                # Add the next node as well
                 temp = temp.next
-        return result, processed
-
-
+        # Once entire stack is processed, return the resulting output and the visited array
+        return result, visited
 
 
 g = Graph(7)
@@ -119,8 +158,8 @@ g.print_graph()
 
 print()
 print()
-# print("BFS TRAVERSAL")
-# print(g.bfs_traversal(0))
+print("BFS TRAVERSAL")
+print(g.bfs_traversal(1))
 
 print("DFS TRAVERSAL")
 print(g.dfs_traversal(1))

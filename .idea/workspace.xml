@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="854eaf9c-93dc-44cf-8509-4c86a8bf438f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/QueueStructures/TheQueue.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphs/AdjacencyList.py" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/AdjacencyList.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Graphs/AdjacencyMatrix.py" beforeDir="false" afterPath="$PROJECT_DIR$/Graphs/AdjacencyMatrix.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Queues/Queues" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -48,7 +46,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.AdjacencyList">
+  <component name="RunManager" selected="Python.AdjacencyMatrix">
     <configuration name="AdjacencyList" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="PythonDSA" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -319,6 +317,14 @@
       <option name="presentableId" value="Default" />
       <updated>1626786159931</updated>
     </task>
+    <task id="LOCAL-00001" summary="- DFS implemented">
+      <created>1628645851310</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1628645851310</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -333,5 +339,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="- DFS implemented" />
+    <option name="LAST_COMMIT_MESSAGE" value="- DFS implemented" />
   </component>
 </project>

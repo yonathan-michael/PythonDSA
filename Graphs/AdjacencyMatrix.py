@@ -1,4 +1,5 @@
 from QueueStructures.TheQueue import TheQueue
+from Stacks.Stack import Stack
 
 
 class Graph:
@@ -26,11 +27,8 @@ class Graph:
                 print(val, end=" ")
             print()
 
-    def bfs_traversal(self, source):
+    def bfs_traversal_helper(self, source, visited):
         result = ""
-
-        # Write - Your - Code
-        # For the above graph, it should return "01234" or "02143" etc
         processed = []
         queue = TheQueue()
         queue.enqueue(source)
@@ -39,27 +37,98 @@ class Graph:
             r = queue.dequeue()
             result += str(r)
             processed.append(r)
+            visited[r] = True
             for index in range(len(self.adjMatrix[r])):
                 if index not in processed and self.adjMatrix[r][index] == 1:
                     processed.append(index)
                     queue.enqueue(index)
+
+        return result, visited
+
+    def bfs_traversal(self, source):
+        result = ""
+
+        # Keep Track of Number of Vertices
+        num_of_vertices = self.size
+
+        if num_of_vertices == 0:
+            return result
+
+        visited = [False for x in range(num_of_vertices)]
+
+        result, visited = self.bfs_traversal_helper(source, visited)
+
+        for i in range(self.size):
+            if not visited[i]:
+                new_result, visited = self.dfs_traversal_helper(i, visited)
+                result += new_result
+
         return result
+
+    def dfs_traversal(self, source):
+        result = ""
+
+        # Keep Track of Number of Vertices
+        num_of_vertices = self.size
+
+        if num_of_vertices == 0:
+            return result
+
+        visited = []
+        for i in range(self.size):
+            visited.append(False)
+
+        result, visited = self.dfs_traversal_helper(source, visited)
+
+        for i in range(self.size):
+            if not visited[i]:
+                new_result, visited = self.dfs_traversal_helper(i, visited)
+                result += new_result
+
+        return result
+
+    def dfs_traversal_helper(self, source, visited):
+        result = ""
+        stack = Stack()
+        stack.push(source)
+        visited[source] = True
+
+        while not stack.is_empty():
+            r = stack.pop()
+            result += str(r)
+            for index in range(len(self.adjMatrix[r])):
+                if index not in visited and self.adjMatrix[r][index] == 1:
+                    stack.push(index)
+                    visited[index] = True
+
+        return result, visited
 
 
 def main():
-    g = Graph(5)
-    g.add_edge(0, 2)
-    g.add_edge(0, 1)
-    g.add_edge(1, 4)
-    g.add_edge(1, 3)
+    g = Graph(7)
 
     g.print_matrix()
 
     print()
     print()
 
+    g.add_edge(1, 2)
+    g.add_edge(1, 3)
+
+    g.add_edge(2, 4)
+    g.add_edge(2, 5)
+
+    g.add_edge(3, 6)
+
+    g.print_matrix()
+
+    print()
+    print()
     print("BFS TRAVERSAL")
-    print(g.bfs_traversal(0))
+    print(g.bfs_traversal(1))
+
+    print("DFS TRAVERSAL")
+    print(g.dfs_traversal(1))
 
 
 if __name__ == '__main__':
